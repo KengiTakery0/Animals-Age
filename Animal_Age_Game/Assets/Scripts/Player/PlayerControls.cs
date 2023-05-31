@@ -3,23 +3,60 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
+    [SerializeField] private GameObject _camera;
+
+    [SerializeField] float _scrollSpeed;
+    [SerializeField] float _moveSpeed;
+
+    float moveHorizontal;
+    float moveVertical;
+
     private PlayerInput playerInput;
+    private bool isRotated = false;
+
 
     private void Awake()
     {
         playerInput = new PlayerInput();
+
+        playerInput.ControllActions.CameraMoveUpDown.performed += ctx => moveVertical = ctx.ReadValue<float>();
+        playerInput.ControllActions.CameraMoveLeftRight.performed += ctx => moveHorizontal = ctx.ReadValue<float>();
+        playerInput.ControllActions.CameraRotate.performed += ctx => Rotate();
+    }
+    private void FixedUpdate()
+    {
+        MoveLeftRight(moveHorizontal * Time.deltaTime * _moveSpeed);
+        MoveUpDown(moveVertical * Time.deltaTime * _scrollSpeed);
     }
 
-    public void CameraMoveUpDown(Transform cameraPos)
+    #region VIEW_MOVE
+    private void MoveUpDown(float value)
     {
-        float scroll = playerInput.ControllActions.CameraMove.ReadValue<float>();
-        if (scroll > 0) cameraPos.position += new Vector3(0, 1, 0);
-        else if (scroll < 0) cameraPos.position -= new Vector3(0, 1, 0);
+        _camera.transform.position += new Vector3(0, value, 0);
     }
-    public void CameraRotate()
+    private void Rotate()
     {
-        
+
+        if (!isRotated)
+        {
+            _camera.transform.position = new Vector3(0, 0, 10);
+            _camera.transform.transform.rotation = new Quaternion(0, 180, 0, 0);
+            isRotated = true;
+        }
+        else if (isRotated)
+        {
+            _camera.transform.position = new Vector3(0, 0, -10);
+            _camera.transform.transform.rotation = new Quaternion(0, 0, 0, 0);
+            isRotated = false;
+        }
     }
+
+    private void MoveLeftRight(float value)
+    {
+        if (isRotated) _camera.transform.position += new Vector3(-value, 0, 0);
+        else if (!isRotated) _camera.transform.position += new Vector3(value, 0, 0);
+    }
+    #endregion
 
     private void OnEnable()
     {

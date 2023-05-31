@@ -28,7 +28,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             ""id"": ""c27c3124-2ea9-4425-8386-e056602339b9"",
             ""actions"": [
                 {
-                    ""name"": ""CameraMove"",
+                    ""name"": ""CameraMoveUpDown"",
                     ""type"": ""PassThrough"",
                     ""id"": ""af9a0c0b-a915-44d1-9a40-31a0b0483a03"",
                     ""expectedControlType"": """",
@@ -38,8 +38,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""CameraRotate"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""13f8138e-af96-4d02-869c-4cd53dfe7687"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""CameraMoveLeftRight"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""5b758b1c-74a0-43ea-a662-45a3092d9947"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -54,7 +63,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraMove"",
+                    ""action"": ""CameraMoveUpDown"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -65,7 +74,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraMove"",
+                    ""action"": ""CameraMoveUpDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -76,73 +85,84 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraMove"",
+                    ""action"": ""CameraMoveUpDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""ADRotation"",
-                    ""id"": ""e793546c-a6da-49a8-9a78-68357edd81e6"",
+                    ""name"": """",
+                    ""id"": ""bc037763-b4b8-4cf8-85f3-123e0be72ccf"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraRotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""ADMove"",
+                    ""id"": ""401da7b1-7ef5-4a1c-aed4-f97120575344"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraRotate"",
+                    ""action"": ""CameraMoveLeftRight"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""2a5bb1be-2c74-4a7a-a512-1c4c16d19a74"",
+                    ""id"": ""c5c21810-37d9-4c61-8acb-2d54bfc24291"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraRotate"",
+                    ""action"": ""CameraMoveLeftRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""a7b3f814-6864-4ad2-bfad-9fb20b45feda"",
+                    ""id"": ""f222ebe1-7ad4-4486-8121-47934f087fe4"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraRotate"",
+                    ""action"": ""CameraMoveLeftRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""LeftRightRotation"",
-                    ""id"": ""f5efa099-942d-45ea-bcaa-a4093aa53bbd"",
+                    ""name"": ""LeftRightMove"",
+                    ""id"": ""88befde5-3488-4ffc-a3ed-65430c418a79"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraRotate"",
+                    ""action"": ""CameraMoveLeftRight"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""bc4bf820-22c6-4dc4-901b-52580c4abf4f"",
+                    ""id"": ""fcf08d41-587d-4018-93e6-16f03ef2b6aa"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraRotate"",
+                    ""action"": ""CameraMoveLeftRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""29876a54-dab3-4a42-99b5-a9fe46ae0c44"",
+                    ""id"": ""3c1dd6d7-a23a-4218-bc93-8601664aa149"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraRotate"",
+                    ""action"": ""CameraMoveLeftRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -153,8 +173,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
 }");
         // ControllActions
         m_ControllActions = asset.FindActionMap("ControllActions", throwIfNotFound: true);
-        m_ControllActions_CameraMove = m_ControllActions.FindAction("CameraMove", throwIfNotFound: true);
+        m_ControllActions_CameraMoveUpDown = m_ControllActions.FindAction("CameraMoveUpDown", throwIfNotFound: true);
         m_ControllActions_CameraRotate = m_ControllActions.FindAction("CameraRotate", throwIfNotFound: true);
+        m_ControllActions_CameraMoveLeftRight = m_ControllActions.FindAction("CameraMoveLeftRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -216,14 +237,16 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     // ControllActions
     private readonly InputActionMap m_ControllActions;
     private List<IControllActionsActions> m_ControllActionsActionsCallbackInterfaces = new List<IControllActionsActions>();
-    private readonly InputAction m_ControllActions_CameraMove;
+    private readonly InputAction m_ControllActions_CameraMoveUpDown;
     private readonly InputAction m_ControllActions_CameraRotate;
+    private readonly InputAction m_ControllActions_CameraMoveLeftRight;
     public struct ControllActionsActions
     {
         private @PlayerInput m_Wrapper;
         public ControllActionsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @CameraMove => m_Wrapper.m_ControllActions_CameraMove;
+        public InputAction @CameraMoveUpDown => m_Wrapper.m_ControllActions_CameraMoveUpDown;
         public InputAction @CameraRotate => m_Wrapper.m_ControllActions_CameraRotate;
+        public InputAction @CameraMoveLeftRight => m_Wrapper.m_ControllActions_CameraMoveLeftRight;
         public InputActionMap Get() { return m_Wrapper.m_ControllActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -233,22 +256,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_ControllActionsActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_ControllActionsActionsCallbackInterfaces.Add(instance);
-            @CameraMove.started += instance.OnCameraMove;
-            @CameraMove.performed += instance.OnCameraMove;
-            @CameraMove.canceled += instance.OnCameraMove;
+            @CameraMoveUpDown.started += instance.OnCameraMoveUpDown;
+            @CameraMoveUpDown.performed += instance.OnCameraMoveUpDown;
+            @CameraMoveUpDown.canceled += instance.OnCameraMoveUpDown;
             @CameraRotate.started += instance.OnCameraRotate;
             @CameraRotate.performed += instance.OnCameraRotate;
             @CameraRotate.canceled += instance.OnCameraRotate;
+            @CameraMoveLeftRight.started += instance.OnCameraMoveLeftRight;
+            @CameraMoveLeftRight.performed += instance.OnCameraMoveLeftRight;
+            @CameraMoveLeftRight.canceled += instance.OnCameraMoveLeftRight;
         }
 
         private void UnregisterCallbacks(IControllActionsActions instance)
         {
-            @CameraMove.started -= instance.OnCameraMove;
-            @CameraMove.performed -= instance.OnCameraMove;
-            @CameraMove.canceled -= instance.OnCameraMove;
+            @CameraMoveUpDown.started -= instance.OnCameraMoveUpDown;
+            @CameraMoveUpDown.performed -= instance.OnCameraMoveUpDown;
+            @CameraMoveUpDown.canceled -= instance.OnCameraMoveUpDown;
             @CameraRotate.started -= instance.OnCameraRotate;
             @CameraRotate.performed -= instance.OnCameraRotate;
             @CameraRotate.canceled -= instance.OnCameraRotate;
+            @CameraMoveLeftRight.started -= instance.OnCameraMoveLeftRight;
+            @CameraMoveLeftRight.performed -= instance.OnCameraMoveLeftRight;
+            @CameraMoveLeftRight.canceled -= instance.OnCameraMoveLeftRight;
         }
 
         public void RemoveCallbacks(IControllActionsActions instance)
@@ -268,7 +297,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public ControllActionsActions @ControllActions => new ControllActionsActions(this);
     public interface IControllActionsActions
     {
-        void OnCameraMove(InputAction.CallbackContext context);
+        void OnCameraMoveUpDown(InputAction.CallbackContext context);
         void OnCameraRotate(InputAction.CallbackContext context);
+        void OnCameraMoveLeftRight(InputAction.CallbackContext context);
     }
 }
