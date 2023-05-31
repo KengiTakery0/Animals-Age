@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    [SerializeField] private GameObject _camera;
+    [SerializeField] private Transform _camera;
 
     [SerializeField] float _scrollSpeed;
     [SerializeField] float _moveSpeed;
@@ -32,20 +32,20 @@ public class PlayerControls : MonoBehaviour
     #region VIEW_MOVE
     private void MoveUpDown(float value)
     {
-        _camera.transform.position += new Vector3(0, value, 0);
+        _camera.transform.position = new Vector3(_camera.position.x, _camera.position.y + value, _camera.position.z);
     }
     private void Rotate()
     {
 
         if (!isRotated)
         {
-            _camera.transform.position = new Vector3(0, 0, 10);
+            _camera.transform.position = new Vector3(_camera.position.x, _camera.position.y, 10);
             _camera.transform.transform.rotation = new Quaternion(0, 180, 0, 0);
             isRotated = true;
         }
         else if (isRotated)
         {
-            _camera.transform.position = new Vector3(0, 0, -10);
+            _camera.transform.position = new Vector3(_camera.position.x, _camera.position.y, -10);
             _camera.transform.transform.rotation = new Quaternion(0, 0, 0, 0);
             isRotated = false;
         }
@@ -53,11 +53,12 @@ public class PlayerControls : MonoBehaviour
 
     private void MoveLeftRight(float value)
     {
-        if (isRotated) _camera.transform.position += new Vector3(-value, 0, 0);
-        else if (!isRotated) _camera.transform.position += new Vector3(value, 0, 0);
+        if (isRotated) _camera.transform.position = new Vector3( _camera.position.x - value, _camera.position.y, _camera.position.z);
+        else if (!isRotated) _camera.transform.position = new Vector3(_camera.position.x + value, _camera.position.y, _camera.position.z);
     }
     #endregion
 
+    #region ENABLE/DISABLE
     private void OnEnable()
     {
         playerInput.Enable();
@@ -66,4 +67,5 @@ public class PlayerControls : MonoBehaviour
     {
         playerInput.Disable();
     }
+    #endregion
 }
