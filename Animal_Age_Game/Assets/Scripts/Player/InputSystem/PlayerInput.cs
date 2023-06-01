@@ -43,12 +43,21 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""CameraMoveLeftRight"",
                     ""type"": ""PassThrough"",
                     ""id"": ""5b758b1c-74a0-43ea-a662-45a3092d9947"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraScale"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""310102ef-2106-4910-a142-47585700291c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -73,7 +82,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/scroll/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Player"",
                     ""action"": ""CameraMoveUpDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -84,7 +93,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/scroll/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Player"",
                     ""action"": ""CameraMoveUpDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -95,7 +104,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": ""Press(behavior=1)"",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Player"",
                     ""action"": ""CameraRotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -117,7 +126,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Player"",
                     ""action"": ""CameraMoveLeftRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -128,7 +137,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Player"",
                     ""action"": ""CameraMoveLeftRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -150,7 +159,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Player"",
                     ""action"": ""CameraMoveLeftRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -161,21 +170,72 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Player"",
                     ""action"": ""CameraMoveLeftRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""QEScale"",
+                    ""id"": ""93874f74-c580-4e3b-b60b-5e892d48fbfa"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraScale"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""08dc17b0-dca3-4248-94c6-61a07009200a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player"",
+                    ""action"": ""CameraScale"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""595eb23f-6c3e-4b4d-af0f-5ee00237e611"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player"",
+                    ""action"": ""CameraScale"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Player"",
+            ""bindingGroup"": ""Player"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // ControllActions
         m_ControllActions = asset.FindActionMap("ControllActions", throwIfNotFound: true);
         m_ControllActions_CameraMoveUpDown = m_ControllActions.FindAction("CameraMoveUpDown", throwIfNotFound: true);
         m_ControllActions_CameraRotate = m_ControllActions.FindAction("CameraRotate", throwIfNotFound: true);
         m_ControllActions_CameraMoveLeftRight = m_ControllActions.FindAction("CameraMoveLeftRight", throwIfNotFound: true);
+        m_ControllActions_CameraScale = m_ControllActions.FindAction("CameraScale", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -240,6 +300,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_ControllActions_CameraMoveUpDown;
     private readonly InputAction m_ControllActions_CameraRotate;
     private readonly InputAction m_ControllActions_CameraMoveLeftRight;
+    private readonly InputAction m_ControllActions_CameraScale;
     public struct ControllActionsActions
     {
         private @PlayerInput m_Wrapper;
@@ -247,6 +308,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @CameraMoveUpDown => m_Wrapper.m_ControllActions_CameraMoveUpDown;
         public InputAction @CameraRotate => m_Wrapper.m_ControllActions_CameraRotate;
         public InputAction @CameraMoveLeftRight => m_Wrapper.m_ControllActions_CameraMoveLeftRight;
+        public InputAction @CameraScale => m_Wrapper.m_ControllActions_CameraScale;
         public InputActionMap Get() { return m_Wrapper.m_ControllActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -265,6 +327,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CameraMoveLeftRight.started += instance.OnCameraMoveLeftRight;
             @CameraMoveLeftRight.performed += instance.OnCameraMoveLeftRight;
             @CameraMoveLeftRight.canceled += instance.OnCameraMoveLeftRight;
+            @CameraScale.started += instance.OnCameraScale;
+            @CameraScale.performed += instance.OnCameraScale;
+            @CameraScale.canceled += instance.OnCameraScale;
         }
 
         private void UnregisterCallbacks(IControllActionsActions instance)
@@ -278,6 +343,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CameraMoveLeftRight.started -= instance.OnCameraMoveLeftRight;
             @CameraMoveLeftRight.performed -= instance.OnCameraMoveLeftRight;
             @CameraMoveLeftRight.canceled -= instance.OnCameraMoveLeftRight;
+            @CameraScale.started -= instance.OnCameraScale;
+            @CameraScale.performed -= instance.OnCameraScale;
+            @CameraScale.canceled -= instance.OnCameraScale;
         }
 
         public void RemoveCallbacks(IControllActionsActions instance)
@@ -295,10 +363,20 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public ControllActionsActions @ControllActions => new ControllActionsActions(this);
+    private int m_PlayerSchemeIndex = -1;
+    public InputControlScheme PlayerScheme
+    {
+        get
+        {
+            if (m_PlayerSchemeIndex == -1) m_PlayerSchemeIndex = asset.FindControlSchemeIndex("Player");
+            return asset.controlSchemes[m_PlayerSchemeIndex];
+        }
+    }
     public interface IControllActionsActions
     {
         void OnCameraMoveUpDown(InputAction.CallbackContext context);
         void OnCameraRotate(InputAction.CallbackContext context);
         void OnCameraMoveLeftRight(InputAction.CallbackContext context);
+        void OnCameraScale(InputAction.CallbackContext context);
     }
 }
