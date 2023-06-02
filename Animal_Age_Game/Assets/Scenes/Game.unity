@@ -949,12 +949,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 1208867108}
-  _scrollSpeed: 0.2
-  _moveSpeed: 5
-  _scaleSpeed: 3
+  _scrollSpeed: 16
+  _moveSpeed: 10
+  _scaleSpeed: 0.2
   _maxCameraRotationY: 180
   _minCameraRotationY: 0
-  _maxCameraSize: 20
+  _maxCameraSize: 25
   _minCameraSize: 5
 --- !u!4 &1792044378
 Transform:
