@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
@@ -7,6 +6,17 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject _savesPanel;
     [SerializeField] GameObject _mainPanel;
     [SerializeField] GameObject _settingsPanel;
+
+    public void OnLoadGame()
+    {
+        SceneManager.LoadScene("Game");
+    }
+    public void OnBackToMain()
+    {
+        _savesPanel.SetActive(false);
+        _mainPanel.SetActive(true);
+    }
+
     public void OnPlayButtonClick()
     {
         _savesPanel.SetActive(true);
