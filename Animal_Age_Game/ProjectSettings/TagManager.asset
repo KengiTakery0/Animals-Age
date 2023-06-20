@@ -44,3 +44,6 @@ TagManager:
   - name: TileMaps
     uniqueID: 4038143155
     locked: 0
+  - name: MainPanelsUI
+    uniqueID: 2686620311
+    locked: 0

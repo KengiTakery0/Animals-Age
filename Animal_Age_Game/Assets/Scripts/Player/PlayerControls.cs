@@ -4,12 +4,15 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerControls : MonoBehaviour
 {
-    [SerializeField] private Transform _camera;
+    [Header("UIPanels")]
+    [SerializeField] private GameObject _pausePanel;
+
 
     [Header("Params")]
     [Space(1)]
 
     [Header("Camera")]
+    [SerializeField] private Transform _camera;
     [SerializeField] float _scrollSpeed;
     [SerializeField] float _moveSpeed;
     [SerializeField] float _scaleSpeed;
@@ -25,7 +28,7 @@ public class PlayerControls : MonoBehaviour
     float moveVertical;
     float scaleValue;
 
-    private Camera camera;
+    private Camera mainCamera;
     private PlayerInput playerInput;
 
     private bool isRotated = false;
@@ -35,18 +38,19 @@ public class PlayerControls : MonoBehaviour
     {
         playerInput = new PlayerInput();
 
-        camera = _camera.GetComponent<Camera>();
+        mainCamera = _camera.GetComponent<Camera>();
 
         playerInput.ControllActions.CameraMoveUpDown.performed += ctx => moveVertical = ctx.ReadValue<float>();
         playerInput.ControllActions.CameraMoveLeftRight.performed += ctx => moveHorizontal = ctx.ReadValue<float>();
         playerInput.ControllActions.CameraScale.performed += ctx => scaleValue = ctx.ReadValue<float>();
         playerInput.ControllActions.CameraRotate.performed += ctx => Rotate();
+        playerInput.ControllActions.PauseMenue.performed += ctx => SetPause();
        
     }
 
     private void Start()
     {
-        camera.orthographicSize = _minCameraSize;
+        mainCamera.orthographicSize = _minCameraSize;
         _camera.transform.rotation =new Quaternion(0, _minCameraRotationY,0,0);
     }
     private void FixedUpdate()
@@ -55,15 +59,21 @@ public class PlayerControls : MonoBehaviour
         MoveUpDown(moveVertical * Time.deltaTime * _scrollSpeed);
         ChangeViewSize(scaleValue * Time.deltaTime * _scaleSpeed);
     }
-
+    #region UI_MENUS
+    private void SetPause()
+    {
+        _pausePanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+    #endregion
     #region VIEW_MOVE
 
     private void ChangeViewSize(float value)
     {
 
-        if (camera.orthographicSize < _minCameraSize) camera.orthographicSize = _minCameraSize;
-        if (camera.orthographicSize >= _maxCameraSize) camera.orthographicSize = _maxCameraSize;
-       camera.orthographicSize += value;
+        if (mainCamera.orthographicSize < _minCameraSize) mainCamera.orthographicSize = _minCameraSize;
+        if (mainCamera.orthographicSize >= _maxCameraSize) mainCamera.orthographicSize = _maxCameraSize;
+       mainCamera.orthographicSize += value;
     }
     private void MoveUpDown(float value)
     {

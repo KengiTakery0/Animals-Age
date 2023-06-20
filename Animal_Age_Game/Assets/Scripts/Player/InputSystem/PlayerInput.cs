@@ -62,6 +62,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseMenue"",
+                    ""type"": ""Button"",
+                    ""id"": ""a27b20e1-013d-4048-bb8c-b0435282cb7d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -240,6 +249,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""CameraScale"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d5ce5b78-70dd-4e12-8a9f-f08e790a718a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseMenue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -269,6 +289,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_ControllActions_CameraRotate = m_ControllActions.FindAction("CameraRotate", throwIfNotFound: true);
         m_ControllActions_CameraMoveLeftRight = m_ControllActions.FindAction("CameraMoveLeftRight", throwIfNotFound: true);
         m_ControllActions_CameraScale = m_ControllActions.FindAction("CameraScale", throwIfNotFound: true);
+        m_ControllActions_PauseMenue = m_ControllActions.FindAction("PauseMenue", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -334,6 +355,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_ControllActions_CameraRotate;
     private readonly InputAction m_ControllActions_CameraMoveLeftRight;
     private readonly InputAction m_ControllActions_CameraScale;
+    private readonly InputAction m_ControllActions_PauseMenue;
     public struct ControllActionsActions
     {
         private @PlayerInput m_Wrapper;
@@ -342,6 +364,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @CameraRotate => m_Wrapper.m_ControllActions_CameraRotate;
         public InputAction @CameraMoveLeftRight => m_Wrapper.m_ControllActions_CameraMoveLeftRight;
         public InputAction @CameraScale => m_Wrapper.m_ControllActions_CameraScale;
+        public InputAction @PauseMenue => m_Wrapper.m_ControllActions_PauseMenue;
         public InputActionMap Get() { return m_Wrapper.m_ControllActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -363,6 +386,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CameraScale.started += instance.OnCameraScale;
             @CameraScale.performed += instance.OnCameraScale;
             @CameraScale.canceled += instance.OnCameraScale;
+            @PauseMenue.started += instance.OnPauseMenue;
+            @PauseMenue.performed += instance.OnPauseMenue;
+            @PauseMenue.canceled += instance.OnPauseMenue;
         }
 
         private void UnregisterCallbacks(IControllActionsActions instance)
@@ -379,6 +405,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CameraScale.started -= instance.OnCameraScale;
             @CameraScale.performed -= instance.OnCameraScale;
             @CameraScale.canceled -= instance.OnCameraScale;
+            @PauseMenue.started -= instance.OnPauseMenue;
+            @PauseMenue.performed -= instance.OnPauseMenue;
+            @PauseMenue.canceled -= instance.OnPauseMenue;
         }
 
         public void RemoveCallbacks(IControllActionsActions instance)
@@ -411,5 +440,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnCameraRotate(InputAction.CallbackContext context);
         void OnCameraMoveLeftRight(InputAction.CallbackContext context);
         void OnCameraScale(InputAction.CallbackContext context);
+        void OnPauseMenue(InputAction.CallbackContext context);
     }
 }
